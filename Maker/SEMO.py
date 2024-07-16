@@ -217,7 +217,7 @@ async def stratmaked(client, message):
 ["☆ حول السورس ☆",]],resize_keyboard=True)
     await message.reply_text(f"**👋🏻 ꒐ أهلاً بك {message.from_user.mention}  🪄✔️\n🤖 ꒐ في صانع ميوزك ميدو  🪄✔️**", reply_markup=kep,quote=True)
     
-@Client.on_message(filters.command(["☆ السورس ☆"], ""))
+@Client.on_message(filters.command(["سورس"], ""))
 async def alivehi(client: Client, message):
     keyboard = InlineKeyboardMarkup(
         [
@@ -235,7 +235,7 @@ async def alivehi(client: Client, message):
     )
  
        
-@Client.on_message(filters.command(["☆ مطور السورس ☆"], ""))
+@Client.on_message(filters.command(["مطور السورس"], ""))
 async def caesar(client: Client, message):
     keyboard = InlineKeyboardMarkup(
         [
@@ -254,7 +254,7 @@ async def caesar(client: Client, message):
 
 
                        
-@Client.on_message(filters.command(["☆ حول السورس ☆"], ""))
+@Client.on_message(filters.command(["نور"], ""))
 async def cjosar(client: Client, message):
     keyboard = InlineKeyboardMarkup(
         [
