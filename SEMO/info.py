@@ -45,7 +45,7 @@ def changeImageSize(maxWidth, maxHeight, image):
     return newImage
 
 
-ahmed = "https://telegra.ph/file/448774fc5d5a1ea025a5a.jpg"
+ahmed = "https://telegra.ph/file/a204f6aadbd2feeac0ef0.jpg"
 
 async def gen_thumb(videoid, photo):
     if os.path.isfile(f"{photo}.png"):
