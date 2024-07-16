@@ -65,7 +65,7 @@ async def get_bot_name(bot_username):
       if not name:
         bot = bot_name.find_one({"bot_username": bot_username})
         if not bot:
-            return "نونا"
+            return "نور"
         botname[bot_username] = bot["bot_name"]
         return bot["bot_name"]
       return name
