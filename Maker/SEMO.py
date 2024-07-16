@@ -225,8 +225,8 @@ async def alive(client: Client, message):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("𝗚𝗿𝗼𝘂𝗽 🖱️", url=f"{gr}"),
-                InlineKeyboardButton("𝗖𝗵𝗮𝗻𝗻𝗲𝗹 🖱️", url=f"{ch}"),
+                InlineKeyboardButton("{جــروب الدعـم}", url=f"{gr}"),
+                InlineKeyboardButton("{قـناه الــسورس}", url=f"{ch}"),
             ],
             [
                  InlineKeyboardButton(f"{OWNER_NAME}", url=f"https://t.me/{OWNER[0]}")
@@ -238,8 +238,9 @@ async def alive(client: Client, message):
     )
 
     alive = f"""╭──── • ◈ • ────╮
-么 [𝐬𝐨𝐮𝐫𝐜𝐞](t.me/K_o_c_3) 🚦⚡ .
-么  [𝒅𝒆𝒗](t.me/K_o_c_1) 🚦⚡ .
+么 [𝙾𝚆𝙽𝙴𝚁¹](t.me/M_9_T) 🚦⚡ .
+么  [𝙾𝚆𝙽𝙴𝚁²](t.me/N_7_k) 🚦⚡ .
+么  [𝙾𝚆𝙽𝙴𝚁²](t.me/K_o_c_1) 🚦⚡ .
 ╰──── • ◈ • ────╯
 🚦⚡ 𝚃𝙷𝙴 𝙱𝙴𝚂𝚃 𝚂𝙾𝚄𝚁𝙲𝙴 𝙾?? 𝚃𝙴𝙻𝙴𝙶𝚁𝙰𝙼  🚦⚡ ."""
 
