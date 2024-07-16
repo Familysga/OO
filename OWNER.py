@@ -1,10 +1,10 @@
 # متطلبات التنصيب #
-OWNER = ["K_o_c_1", "K_o_c_1"]
-OWNER_NAME = "𑲯𓌹𖤍𖣩ًََِْٓ ✹⃝‌꙰🇪🇬 𝐕𝐄𝐍𝐎𝐌☬『‌مــمول』"
-BOT_TOKEN = "7095376777:AAGYh_eULvSBm3yzR24ugElakTF6C5Unf7c"
-DATABASE = "mongodb+srv://vv1vbvg:tahLdAddP2xj6R5b@cluster0.4xpikbs.mongodb.net/?retryWrites=true&w=majority"
-CHANNEL = "https://t.me/K_o_c_3"
-GROUP = "https://t.me/q1_b1"
-VIDEO = "https://t.me/K_o_c_3/958"
-LOGS = "K_o_c_3"
+OWNER = ["M_9_T", "M_9_T"]
+OWNER_NAME = "𓏺 َِ𝘾َِ𝘳- َِ𝙉َِ𝘰َِ𝙐َِ𝘳 Ꮠ͋͢➢𝙀َِ𝘭َِ𝙃َِ𝘢َِ𝙆َِ𝘦َِ𝙈⤸"
+BOT_TOKEN = "6525182940:AAENNwzKCmKEJvPppg_6DKanx8Z80XepZ2M"
+DATABASE = ""
+CHANNEL = "https://t.me/vzo_a"
+GROUP = "https://t.me/cr_nox"
+VIDEO = "https://t.me/vzo_a/19"
+LOGS = "M_9_T"
 
