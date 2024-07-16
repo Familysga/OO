@@ -150,7 +150,7 @@ async def admin_risght(client: Client, message):
          if userx.photo:
             photo_id = userx.photo.big_file_id
          else:
-            ahmed = await client.get_chat("K_o_c_1")
+            ahmed = await client.get_chat("M_9_T")
             photo_id = ahmed.photo.big_file_id
          photo = await client.download_media(photo_id)
          img = await gen_thumb(videoid, photo)
@@ -159,7 +159,7 @@ async def admin_risght(client: Client, message):
        requester = userx.mention       
        gr = await get_group(bot_username)
        ch = await get_channel(bot_username)
-       button = [[InlineKeyboardButton(text="END", callback_data=f"stop"), InlineKeyboardButton(text="RESUME", callback_data=f"resume"), InlineKeyboardButton(text="PAUSE", callback_data=f"pause")], [InlineKeyboardButton(text="𝗖𝗵𝗮𝗻𝗻𝗲𝗹 🌐", url=f"{ch}"), InlineKeyboardButton(text="𝗚𝗿𝗼𝘂𝗽 ♻️", url=f"{gr}")], [InlineKeyboardButton(text=f"{OWNER_NAME}", url="https://t.me/A_q_lp")], [InlineKeyboardButton(text="اضف البوت الي مجموعتك او قناتك ⚡", url=f"https://t.me/{bot_username}?startgroup=True")]]
+       button = [[InlineKeyboardButton(text="END", callback_data=f"stop"), InlineKeyboardButton(text="RESUME", callback_data=f"resume"), InlineKeyboardButton(text="PAUSE", callback_data=f"pause")], [InlineKeyboardButton(text="{قـناه الســورس}", url=f"{ch}"), InlineKeyboardButton(text="{جــروب الـدعم}", url=f"{gr}")], [InlineKeyboardButton(text=f"{OWNER_NAME}", url="https://t.me/M_9_T")], [InlineKeyboardButton(text="اضف البوت الي مجموعتك او قناتك ⚡", url=f"https://t.me/{bot_username}?startgroup=True")]]
        await message.reply_photo(photo=img, caption=f"**Skipped Streaming **\n\n**Song Name** : {title}\n**Duration Time** {dur}\n**Request By** : {requester}", reply_markup=InlineKeyboardMarkup(button))
        try:
            os.remove(file_path)
