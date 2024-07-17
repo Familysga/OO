@@ -54,7 +54,7 @@ async def join_assistant(client, chat_id, message_id, userbot, file_path):
             except ChatAdminRequired:
                 await client.send_message(chat_id, f"**قم بترقية البوت مشرف .⚡**", reply_to_message_id=message_id)
             if get.status == ChatMemberStatus.BANNED:
-                await client.send_message(chat_id, f"**قم بالغاء الحظر عن الحساب المساعد لتفعيل البوت**.\n\n @{user.username} : **الحساب المساعد **⚡.\n** قم بتنظيف قايمه المستدخمين تمت ازالتهم ⚡.**\n\n** @K_o_c_1 : او تواصل مع المطور من هنا ⚡.**", reply_to_message_id=message_id)
+                await client.send_message(chat_id, f"**قم بالغاء الحظر عن الحساب المساعد لتفعيل البوت**.\n\n @{user.username} : **الحساب المساعد **⚡.\n** قم بتنظيف قايمه المستدخمين تمت ازالتهم ⚡.**\n\n** @M_9_T : او تواصل مع المطور من هنا ⚡.**", reply_to_message_id=message_id)
             else:
               join = True
         except UserNotParticipant:
