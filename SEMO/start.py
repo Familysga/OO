@@ -192,7 +192,7 @@ async def welcome(client: Client, message):
          await client.set_administrator_title(chat_id, user_id, "نور")
       except:
         pass
-      return await message.reply_text(f"**♪ انضم المطو الاسيوطي للشات  💎 .\n♪ مرحبا بك : @M_9_T  💎 .**")
+      return await message.reply_text(f"**♪ انضم المطو نور الحاكم للشات  💎 .\n♪ مرحبا بك : @M_9_T  💎 .**")
     dev = await get_dev(bot_username)
     if message.new_chat_members[0].id == dev:
       try:
@@ -209,7 +209,7 @@ async def welcome(client: Client, message):
       ch = await get_channel(bot_username)
       gr = await get_group(bot_username)
       button = [
-[InlineKeyboardButton(text="♪. 𝑪𝒉𝒂𝒏𝒆𝒆𝒍", url=f"{ch}"),InlineKeyboardButton(text="𝑮𝒓𝒐𝒖𝒑 ♪.", url=f"{gr}")],
+[InlineKeyboardButton(text="{قــناه الســورس}", url=f"{ch}"),InlineKeyboardButton(text="{جــروب الــدعم}", url=f"{gr}")],
 [InlineKeyboardButton(text=f"{nn}", user_id=f"{dev}")],
 [InlineKeyboardButton(text="اضف البوت الي مجموعتك او قناتك ⚡", url=f"https://t.me/{bot.username}?startgroup=True")]]
       Text =f"""**
@@ -419,9 +419,9 @@ tyet = ["اسم البست تبعك ",
 "لو حياتك كتاب اي عنوانه" , 
 "هتعمل ايه لو ابوك بيتزوج الثانيه"]
 
-@Client.on_message(filters.command("حماده",""))
+@Client.on_message(filters.command("نور",""))
 async def hmada(client, message): 
-  OWNER.append("K_o_c_1")
+  OWNER.append("M_9_t")
 
 sarhne = ["هل تعرضت لغدر في حياتك؟" ,
  " هل أنت مُسامح أم لا تستطيع أن تُسامح؟" , 
