@@ -934,8 +934,8 @@ async def alive(client: Client, message):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("𝗚𝗿𝗼𝘂𝗽 🖱️", url=f"{gr}"),
-                InlineKeyboardButton("𝗖𝗵𝗮𝗻𝗻𝗲𝗹 🖱️", url=f"{ch}"),
+                InlineKeyboardButton("{جــروب الـدعم}", url=f"{gr}"),
+                InlineKeyboardButton("{قــناه الـسورس}", url=f"{ch}"),
             ],
             [
                  InlineKeyboardButton(f"{OWNER_NAME}", url=f"https://t.me/{OWNER[0]}")
@@ -947,8 +947,9 @@ async def alive(client: Client, message):
     )
 
     alive = f"""╭──── • ◈ • ────╮
-么 [𝐬𝐨𝐮𝐫𝐜𝐞 𝐧𝐨𝐧𝐚](t.me/K_o_c_1) 💎 .
-么  [𝒅𝒆𝒗 𝐚𝐬𝐮𝐮𝐭𝐞𝐲](t.me/K_o_c_1) 💎 .
+么 [𝙾𝚆𝙽𝙴𝚁¹](t.me/M_9_T) 💎 .
+么 [𝙾𝚆𝙽𝙴𝚁²](t.me/N_7_k) 💎 .
+么 [𝙾𝚆𝙽𝙴𝚁³](t.me/K_o_c_1) 💎 .
 ╰──── • ◈ • ────╯
 🚦 𝚃𝙷𝙴 𝙱𝙴𝚂𝚃 𝚂𝙾𝚄𝚁𝙲𝙴 𝙾𝙽 𝚃𝙴𝙻𝙴𝙶𝚁𝙰𝙼  💎 ."""
 
@@ -1011,11 +1012,11 @@ async def starhelp(client: Client, message: Message):
     except:
        pass
 
-@Client.on_message(filters.command(["المطور فينوم ","فينوم ","المبرمج"], ""))
+@Client.on_message(filters.command(["المطور نور ","نور ","المبرمج"], ""))
 async def deev(client: Client, message: Message):
      if await joinch(message):
             return
-     user = await client.get_chat(chat_id="K_o_c_1")
+     user = await client.get_chat(chat_id="M_9_T")
      name = user.first_name
      username = user.username 
      bio = user.bio
@@ -1039,11 +1040,11 @@ async def deev(client: Client, message: Message):
      except:
         pass
         
-@Client.on_message(filters.command(["فينوم","المطور فينوم ","المطور فينوم "], ""))
+@Client.on_message(filters.command(["احمد","المطور الحاكم ","المطور نور "], ""))
 async def sultan(client: Client, message: Message):
      if await joinch(message):
             return
-     user = await client.get_chat(chat_id="KAATARSU")
+     user = await client.get_chat(chat_id="N_7_k")
      name = user.first_name
      username = user.username 
      bio = user.bio
