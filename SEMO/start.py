@@ -979,34 +979,33 @@ async def pipong(client: Client, message: Message):
     return 
 
 @app.on_message(filters.command(["/help", "الاوامر", "اوامر"], ""))
-async@app.on_message(filters.command(["/help", "الاوامر", "اوامر"], ""))
 async def starhelp(client: Client, message: Message):
     if not message.chat.type == enums.ChatType.PRIVATE:
-        if await joinch(message):
+      if await joinch(message):
             return
     bot = await client.get_me()
     photo = bot.photo.big_file_id
     photo = await client.download_media(photo)
     await message.reply_photo(
         photo=photo,
-        caption="",
+        caption=f"",
         reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton("اللغة العربية 🇪🇬", callback_data="arbic")
-                ],
-                [   
-                    InlineKeyboardButton("English language 🇺🇲", callback_data="english")
-                ],
-                [
-                    InlineKeyboardButton("SeMo ElKbEr 🥷", url="https://t.me/ahmedelnqyb")
-                ],
-                [
-                    InlineKeyboardButton("اضف البوت الي مجموعتك ❤️", url=f"https://t.me/{bot.username}?startgroup=true")
-                ],
-            ]
-        )
-    )
+                    [
+                        [
+                            InlineKeyboardButton("اللغة العربية 🇪🇬", callback_data="arbic")
+                        ],
+                        [   
+                            InlineKeyboardButton("English language 🇺🇲", callback_data="english")
+                        ],
+                        [
+                            InlineKeyboardButton("SeMo ElKbEr 🥷", user_id=f"ahmedelnqyb")
+                        ],
+                        [
+                            InlineKeyboardButton("اضف البوت الي مجموعتك ❤️", url="https://t.me/{bot.username}?startgroup=true")
+                        ],
+                    ]                         
+                )
+		  )
     try:
       os.remove(photo)
     except:
