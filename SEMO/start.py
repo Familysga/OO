@@ -979,33 +979,34 @@ async def pipong(client: Client, message: Message):
     return 
 
 @app.on_message(filters.command(["/help", "الاوامر", "اوامر"], ""))
+async@app.on_message(filters.command(["/help", "الاوامر", "اوامر"], ""))
 async def starhelp(client: Client, message: Message):
     if not message.chat.type == enums.ChatType.PRIVATE:
-      if await joinch(message):
+        if await joinch(message):
             return
     bot = await client.get_me()
     photo = bot.photo.big_file_id
     photo = await client.download_media(photo)
     await message.reply_photo(
         photo=photo,
-        caption=f"",
+        caption="",
         reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton("اللغة العربية 🇪🇬", callback_data="arbic")
-                        ],
-                        [   
-                            InlineKeyboardButton("English language 🇺🇲", callback_data="english")
-                        ],
-                        [
-                            InlineKeyboardButton("SeMo ElKbEr 🥷", user_id=f"ahmedelnqyb")
-                        ],
-                        [
-                            InlineKeyboardButton("اضف البوت الي مجموعتك ❤️", url="https://t.me/{bot.username}?startgroup=true")
-                        ],
-                    ]                         
-                )
-            )
+            [
+                [
+                    InlineKeyboardButton("اللغة العربية 🇪🇬", callback_data="arbic")
+                ],
+                [   
+                    InlineKeyboardButton("English language 🇺🇲", callback_data="english")
+                ],
+                [
+                    InlineKeyboardButton("SeMo ElKbEr 🥷", url="https://t.me/ahmedelnqyb")
+                ],
+                [
+                    InlineKeyboardButton("اضف البوت الي مجموعتك ❤️", url=f"https://t.me/{bot.username}?startgroup=true")
+                ],
+            ]
+        )
+    )
     try:
       os.remove(photo)
     except:
@@ -1439,13 +1440,13 @@ async def bt(client: Client, message: Message):
      bot_username = client.me.username
      dev = await get_dev(bot_username)
      if userr.username in OWNER :
-         await message.reply_text("**♪   رتبتك هي : مطور السورس نـور الـحاكم  💎 .**")
+         await message.reply_text("**♪  رتبتك هي : مطور السورس نـور   💎 .**")
          return
      if userr.username in ["M_9_T"]:
-         await message.reply_text("**♪ رتبتك هي : المطور نور الحاكم  💎 .**")
+         await message.reply_text("**♪ رتبتك هي : المطور احمد الحاكم  💎 .**")
          return
-     if userr.username in ["M_9_T"]:
-         await message.reply_text("**♪ رتبتك هي : المطور نور الحاكم 💎 .**")
+     if userr.username in ["N_7_k"]:
+         await message.reply_text("**♪ رتبتك هي : المطور احمد الحاكم 💎 .**")
          return
      if userr.id == dev:
         return await message.reply_text("**♪ رتبتك هي : المطور الاساسي  💎 .**")
