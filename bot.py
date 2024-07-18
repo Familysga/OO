@@ -6,16 +6,16 @@ from pyromod import listen
 
 bot = Client(
     "mo",
-    api_id="29246989",
-    api_hash="2925bdb4b1776707089286393330c72d",
-    bot_token="7095376777:AAGYh_eULvSBm3yzR24ugElakTF6C5Unf7c",
+    api_id="15837209",
+    api_hash="fe081df6989a4d79c1004903bb4f23e6",
+    bot_token="6525182940:AAHVo-EPIHrKMYXa5CyfI53_BcHVkhw80bI",
     plugins=dict(root="Maker")
     )
 
 async def start_bot():
     print("[INFO]: STARTING BOT CLIENT")
     await bot.start()
-    AFROTOO = "K_o_c_1"
+    AFROTOO = "M_9_T"
     await bot.send_message(AFROTOO, "**تم تشغيل ال صانع بنجاح عزيزي المطور ...🥀،**")
     print("[INFO]: تم تشغيل الصانع وارسال رسالة للمطور⚡🚦.")
     await idle()
