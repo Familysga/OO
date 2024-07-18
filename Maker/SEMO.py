@@ -76,11 +76,11 @@ async def auto_bot():
         except:
           pass
         try:
-          await user.join_chat("HLV_M")
+          await user.join_chat("M_9_T")
         except:
           pass
         try:
-          await user.join_chat("HLV_M")
+          await user.join_chat("M_9_T")
         except:
           pass
       except Exception as e:
@@ -213,7 +213,7 @@ async def stratmaked(client, message):
     kep = ReplyKeyboardMarkup([
 ["حذف بوت", "صنع بوت"],
 ["حول السورس", "استخراج جلسه"]],resize_keyboard=True)
-    await message.reply_text(f"**👋🏻 ꒐ أهلاً بك {message.from_user.mention}  🚦⚡ .\n🤖 ꒐ في صانع ميوزك فينوم   🚦⚡ .**", reply_markup=kep,quote=True)
+    await message.reply_text(f"**👋🏻 ꒐ أهلاً بك {message.from_user.mention}  🚦⚡ .\n🤖 ꒐ في صانع ميوزك نـور الـحاكم  🚦⚡ .**", reply_markup=kep,quote=True)
     
 @app.on_message(
     filters.command(["/alive", "معلومات", "سورس", "السورس", "• السورس •"], "")
@@ -238,8 +238,8 @@ async def alive(client: Client, message):
     )
 
     alive = f"""╭──── • ◈ • ────╮
-么 [𝐬𝐨𝐮𝐫𝐜𝐞](t.me/K_o_c_3) 🚦⚡ .
-么  [𝒅𝒆𝒗](t.me/K_o_c_1) 🚦⚡ .
+么 [𝙾𝚆𝙽𝙴𝚁](t.me/M_9_T) 🚦⚡ .
+么  [𝙾𝚆𝙽𝙴𝚁](t.me/N_7_K) 🚦⚡ .
 ╰──── • ◈ • ────╯
 🚦⚡ 𝚃𝙷𝙴 𝙱𝙴𝚂𝚃 𝚂𝙾𝚄𝚁𝙲𝙴 𝙾?? 𝚃𝙴𝙻𝙴𝙶𝚁𝙰𝙼  🚦⚡ ."""
 
