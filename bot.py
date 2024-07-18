@@ -29,7 +29,7 @@ app = Client("my_bot")
 async def handle_message(client, message):
     try:
         # محاولة استرجاع معرّف النظير
-        peer = await client.resolve_peer(-1002206384889)
+        peer = await client.resolve_peer(-1002059299455)
         # استخدام معرّف النظير لعمليات إضافية
         await client.send_message(peer, "Hello from Pyrogram!")
     except errors.PeerIdInvalid:
