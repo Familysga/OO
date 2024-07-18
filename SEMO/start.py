@@ -934,14 +934,14 @@ async def alive(client: Client, message):
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("𝗚𝗿𝗼𝘂𝗽 🖱️", url=f"{gr}"),
-                InlineKeyboardButton("𝗖𝗵𝗮𝗻𝗻𝗲𝗹 🖱️", url=f"{ch}"),
+                InlineKeyboardButton("{جـًُّـروُب الدعـًُّم}", url=f"{gr}"),
+                InlineKeyboardButton("{قـُّـناه الـًٌِّسورس}", url=f"{ch}"),
             ],
             [
                  InlineKeyboardButton(f"{OWNER_NAME}", url=f"https://t.me/{OWNER[0]}")
             ],
             [ 
-                 InlineKeyboardButton("اضف البوت الي مجموعتك ❤️", url="https://t.me/{app.username}?startgroup=true")
+                 InlineKeyboardButton("اضف البوت الي مجموعتك سورس نور❤️", url="https://t.me/{app.username}?startgroup=true")
             ]
         ]
     )
