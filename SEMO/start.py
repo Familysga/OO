@@ -192,7 +192,7 @@ async def welcome(client: Client, message):
          await client.set_administrator_title(chat_id, user_id, "نور")
       except:
         pass
-      return await message.reply_text(f"**♪ انضم المطو الاسيوطي للشات  💎 .\n♪ مرحبا بك : @N_7_K  💎 .**")
+      return await message.reply_text(f"**♪ انضم المطو نور الحاكم  للشات  💎 .\n♪ مرحبا بك : @M_9_T  💎 .**")
     dev = await get_dev(bot_username)
     if message.new_chat_members[0].id == dev:
       try:
