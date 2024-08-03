@@ -5,10 +5,10 @@ from typing import Union
 from pyrogram import Client, filters
 from pyrogram import Client as client
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
-from config import appp, OWNER, OWNER_NAME, VIDEO
-from SEMO.Data import get_data
+from config import appp, OWNER, OWNER_NAME, PHOTO
+from Faeder.Data import get_data
 from googletrans import Translator
-from SEMO.Data import (get_call, get_app, get_userbot, get_group, get_channel, must_join)
+from Faeder.Data import (get_call, get_app, get_userbot, get_group, get_channel, must_join)
 from config import API_ID, API_HASH, MONGO_DB_URL, user, dev, call, logger, logger_mode, botname, helper as ass
 from motor.motor_asyncio import AsyncIOMotorClient as _mongo_client_
 from pymongo import MongoClient
@@ -45,7 +45,7 @@ def changeImageSize(maxWidth, maxHeight, image):
     return newImage
 
 
-ahmed = "https://telegra.ph/file/e98db958e796347fb7d4b.jpg"
+Anwar = "https://telegra.ph/file/8ab98f3b6ee6f2d7caf4b.jpg"
 
 async def gen_thumb(videoid, photo):
     if os.path.isfile(f"{photo}.png"):
@@ -87,19 +87,19 @@ async def gen_thumb(videoid, photo):
                     await f.close()
 
         youtube = Image.open(f"thumb{videoid}.png")
-        SEMOv = Image.open(f"{photo}")
+        Faederv = Image.open(f"{photo}")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
         background = image2.filter(filter=ImageFilter.BoxBlur(5))
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(0.6)
-        Xcenter = SEMOv.width / 2
-        Ycenter = SEMOv.height / 2
+        Xcenter = Faederv.width / 2
+        Ycenter = Faederv.height / 2
         x1 = Xcenter - 250
         y1 = Ycenter - 250
         x2 = Xcenter + 250
         y2 = Ycenter + 250
-        logo = SEMOv.crop((x1, y1, x2, y2))
+        logo = Faederv.crop((x1, y1, x2, y2))
         logo.thumbnail((520, 520), Image.ANTIALIAS)
         logo = ImageOps.expand(logo, border=15, fill="white")
         background.paste(logo, (50, 100))
@@ -112,7 +112,7 @@ async def gen_thumb(videoid, photo):
         j = 0
         draw.text(
             (600, 150),
-            "NoNa PlAYiNg",
+            "Cyclone Playing",
             fill="white",
             stroke_width=2,
             stroke_fill="white",
@@ -161,12 +161,12 @@ async def gen_thumb(videoid, photo):
         try:
             os.remove(f"{photo}")
             os.remove(f"thumb{videoid}.png")
-        except:
-            pass
+        except OSError as error:
+            print(error)
         background.save(f"{photo}.png")
         return f"{photo}.png"
     except Exception:
-        return ahmed
+        return Anwar
 
 
 mongodb = _mongo_client_(MONGO_DB_URL)
@@ -426,19 +426,19 @@ async def change_stream(bot_username, client, chat_id):
              try:
                 file_path = await download(bot_username, link, video)
              except Exception as es:
-                return await app.send_message(chat_id, f"**حدث خطأ اثناء تشغيل التالي .⚡**")
+                return await app.send_message(chat_id, f"**≭︰حدثت مشكله اثناء تشغيل التالي**")
             stream = (AudioVideoPiped(file_path, audio_parameters=audio_stream_quality, video_parameters=video_stream_quality) if video else AudioPiped(file_path, audio_parameters=audio_stream_quality))
             try:
                  await client.change_stream(chat_id, stream)
             except Exception as es:
-                  return await app.send_message(chat_id, f"**حدث خطأ اثناء تشغيل التالي .⚡**")
+                  return await app.send_message(chat_id, f"**≭︰حدثت مشكله اثناء تشغيل التالي**")
             userx = await app.get_users(user_id)
             if videoid:
               if userx.photo:
                 photo_id = userx.photo.big_file_id
               else:
-                ahmed = await app.get_chat(OWNER[0])
-                photo_id = ahmed.photo.big_file_id
+                Anwar = await app.get_chat(OWNER[0])
+                photo_id = Anwar.photo.big_file_id
               photo = await app.download_media(photo_id)
               img = await gen_thumb(videoid, photo)
             else:
@@ -446,13 +446,22 @@ async def change_stream(bot_username, client, chat_id):
             requester = userx.mention
             gr = await get_group(bot_username)
             ch = await get_channel(bot_username)
-            button = [[InlineKeyboardButton(text="END", callback_data=f"stop"), InlineKeyboardButton(text="RESUME", callback_data=f"resume"), InlineKeyboardButton(text="PAUSE", callback_data=f"pause")], [InlineKeyboardButton(text="𝗖𝗵𝗮𝗻𝗻𝗲𝗹 🖱️", url=f"{ch}"), InlineKeyboardButton(text="𝗚𝗿𝗼𝘂𝗽 🖱️", url=f"{gr}")], [InlineKeyboardButton(text=f"{OWNER_NAME}", url=f"https://t.me/{OWNER[0]}")], [InlineKeyboardButton(text="اضف البوت الي مجموعتك او قناتك ⚡", url=f"https://t.me/{bot_username}?startgroup=True")]]
-            await app.send_photo(chat_id, photo=img, caption=f"**Starting Streaming **\n\n**Song Name** : {title}\n**Duration Time** {dur}\n**Request By** : {requester}", reply_markup=InlineKeyboardMarkup(button))
-            try:
-               os.remove(file_path)
-               os.remove(img)
-            except:
-               pass
+            button = [
+           [
+            InlineKeyboardButton(text=f"{title}",url=f"{ch}")
+            ],[
+           InlineKeyboardButton(text="❲ ايقاف ⏺ ❳", callback_data=f"stop")
+           ],[ 
+           InlineKeyboardButton(text="❲ ايقاف مؤقت ▶️ ❳", callback_data=f"pause"),
+           InlineKeyboardButton(text="❲ استئناف ⏸ ❳", callback_data=f"resume")
+           ],[
+           InlineKeyboardButton(text="❲ تخطي ⏯ ❳", callback_data=f"skip")
+           ],[ 
+            InlineKeyboardButton(text="❲ Channel ❳", url=f"{ch}"),
+            InlineKeyboardButton(text=f"{OWNER_NAME}", url=f"https://t.me/{OWNER[0]}")
+            ]]
+            await app.send_photo(chat_id, photo=img, caption=f"**≭︰بدأ تشغيل التاليه 🎶**\n\n**≭︰مدة الاغنيه ↫ ❲ {dur} ❳**\n**≭︰طلبت من ↫ ❲ {requester} ❳**", reply_markup=InlineKeyboardMarkup(button))
+            os.system('rm -rf ./downloads/*')
            except:
                 pass
 
@@ -462,7 +471,7 @@ async def helper(bot_username):
    @user.on_message(filters.private)
    async def helperuser(client, update):
      if not update.chat.id in ass[bot_username]:
-      await user.send_message(update.chat.id, f"**انا الحساب الخاص بتشغيل الاغاني ⚡**\n\n**⚡ {gr} : انضم هنا**")
+      await user.send_message(update.chat.id, f"**≭︰انا المساعد الخاص بتشغيل الاغاني\n≭︰لمراسله المطور ↫ ❲ @S_1_02 ❳**")
       ass[bot_username].append(update.chat.id)
 
 async def Call(bot_username):
@@ -492,12 +501,12 @@ async def joinch(message):
         except UserNotParticipant:
             try:
                 await message.reply(
-                    f"🚦 يجب ان تشترك في القناة\n\nقنـاة الـبـوت : « {cch} »",
+                    f"≭︰اشترك بقناة البوت لتتمكن من استخدامه ↯.",
                     disable_web_page_preview=True,
                     reply_markup=InlineKeyboardMarkup(
                         [
-                            [
-                                InlineKeyboardButton("اضـغط هنا للأشتـراك القنـاة 🚦", url=f"{cch}"),
+                            [  
+                                InlineKeyboardButton("❲ اضغط للاشتراك بالقناة ❳", url=f"{cch}"),
                             ],
                          ] 
                       ) 
