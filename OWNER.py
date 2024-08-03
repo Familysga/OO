@@ -1,10 +1,10 @@
 # متطلبات التنصيب #
-OWNER = ["M_9_T", "M_9_T"]
-OWNER_NAME = "𓏺 َِ𝘾َِ𝘳- َِ𝙉َِ𝘰َِ𝙐َِ𝘳 Ꮠ͋͢➢𝙀َِ𝘭َِ𝙃َِ𝘢َِ𝙆َِ𝘦َِ𝙈⤸"
-BOT_TOKEN = "7164031548:AAHl4P3u4BijUc9lATwuiLzCPpgLA9bNIqs"
+OWNER = ["H_8_o", "H_8_o"]
+OWNER_NAME = "𝐋𝐄𝐀𝐃𝐄𝐑 𝐒𝐀𝐃𝐃𝐀𝐌 𝐇𝐔𝐒𝐒𝐄𝐈𝐍⤸"
+BOT_TOKEN = "6711048210:AAGeTTCLCXyBmcgcgC264YPkmI5g5xBJSnQ"
 DATABASE = "mongodb+srv://vv1vbvg:tahLdAddP2xj6R5b@cluster0.4xpikbs.mongodb.net"
-CHANNEL = "https://t.me/vzo_a"
-GROUP = "https://t.me/cr_nox"
-VIDEO = "https://t.me/vzo_a/19"
-LOGS = "M_9_T"
+CHANNEL = "https://t.me/A1DIIU"
+GROUP = "https://t.me/SUPERXFAST"
+VIDEO = "https://t.me/H_8_ov/10"
+LOGS = "H_8_o"
 
