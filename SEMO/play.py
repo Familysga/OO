@@ -5,7 +5,7 @@ import aiohttp
 import requests
 import random 
 import asyncio
-import yt_dlp
+import yt_dlp 
 from datetime import datetime, timedelta
 from youtube_search import YoutubeSearch
 import pytgcalls
@@ -31,18 +31,17 @@ from pytgcalls.types import (JoinedGroupCallParticipant,
                              LeftGroupCallParticipant, Update)
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
 from pytgcalls.types.stream import StreamAudioEnded
-from config import API_ID, API_HASH, MONGO_DB_URL, VIDEO, OWNER, OWNER_NAME, LOGS, GROUP, CHANNEL
+from config import API_ID, API_HASH, MONGO_DB_URL, PHOTO, OWNER, OWNER_NAME, LOGS, GROUP, CHANNEL
 from motor.motor_asyncio import AsyncIOMotorClient as _mongo_client_
 from pymongo import MongoClient
 from bot import bot as man
-from SEMO.info import (db, add, is_served_call, add_active_video_chat, add_served_call, add_active_chat, gen_thumb, download, remove_active, joinch)
-from SEMO.Data import (get_logger, get_userbot, get_call, get_logger_mode, get_group, get_channel)
-import asyncio
+from Faeder.info import (db, add, is_served_call, add_active_video_chat, add_served_call, add_active_chat, gen_thumb, download, remove_active, joinch)
+from Faeder.Data import (get_logger, get_userbot, get_call, get_logger_mode, get_group, get_channel)
+import asyncio 
              
 mongodb = _mongo_client_(MONGO_DB_URL)
 pymongodb = MongoClient(MONGO_DB_URL)
 Bots = pymongodb.Bots
-
 
 async def join_assistant(client, chat_id, message_id, userbot, file_path):
         join = None
@@ -52,9 +51,9 @@ async def join_assistant(client, chat_id, message_id, userbot, file_path):
                 user_id = user.id
                 get = await client.get_chat_member(chat_id, user_id)
             except ChatAdminRequired:
-                await client.send_message(chat_id, f"**قم بترقية البوت مشرف .⚡**", reply_to_message_id=message_id)
+                await client.send_message(chat_id, f"**≭︰ارفع البوت ادمن اولا**", reply_to_message_id=message_id)
             if get.status == ChatMemberStatus.BANNED:
-                await client.send_message(chat_id, f"**قم بالغاء الحظر عن الحساب المساعد لتفعيل البوت**.\n\n @{user.username} : **الحساب المساعد **⚡.\n** قم بتنظيف قايمه المستدخمين تمت ازالتهم ⚡.**\n\n** @H_8_o : او تواصل مع المطور من هنا ⚡.**", reply_to_message_id=message_id)
+                await client.send_message(chat_id, f"≭︰الغي الحظر عن المساعد لتتمكن من التشغيل\n≭︰الحساب المساعد ↫ ❲ @{user.username} ❳", reply_to_message_id=message_id)
             else:
               join = True
         except UserNotParticipant:
@@ -74,9 +73,9 @@ async def join_assistant(client, chat_id, message_id, userbot, file_path):
                   await userbot.join_chat(invitelink)
                   join = True
                  except ChatAdminRequired:
-                    return await client.send_message(chat_id, f"**قم اعطاء البوت صلاحيه اضافه المستخدمين عبر الرابط .⚡**", reply_to_message_id=message_id)
+                    return await client.send_message(chat_id, f"**≭︰اعطي البوت صلاحيه دعوه مستخدمين عبر الرابط**", reply_to_message_id=message_id)
                  except Exception as e:
-                   await client.send_message(chat_id, f"** حدث خطأ حاول مرا آخري لاحقا**\n**{GROUP} : او تواصل مع الدعم من هنا .⚡**", reply_to_message_id=message_id)
+                   await client.send_message(chat_id, f"**≭︰حدثت مشكله جرب مره اخرى او تواصل مع المطور**", reply_to_message_id=message_id)
             else:
                 try:
                     try:
@@ -87,19 +86,19 @@ async def join_assistant(client, chat_id, message_id, userbot, file_path):
                         try:
                           invitelink = (await client.export_chat_invite_link(chat_id))
                         except ChatAdminRequired:
-                          await client.send_message(chat_id, f"**قم اعطاء البوت صلاحيه اضافه مستخدمين عبر الرابط .⚡**", reply_to_message_id=message_id)
+                          await client.send_message(chat_id, f"**≭︰اعطي البوت صلاحيه دعوه مستخدمين عبر الرابط**", reply_to_message_id=message_id)
                         except Exception as e:
-                          await client.send_message(chat_id, f"** حدث خطأ حاول مرا آخري لاحقا**\n**{GROUP} : او تواصل مع الدعم من هنا .⚡**", reply_to_message_id=message_id)
-                    m = await client.send_message(chat_id, "**انتظر قليلاً جاري تفعيل البوت .⚡**")
+                          await client.send_message(chat_id, f"**≭︰حدثت مشكله جرب مره اخرى او تواصل مع المطور**", reply_to_message_id=message_id)
+                    m = await client.send_message(chat_id, "**≭︰جاري تفعيل البوت**")
                     if invitelink.startswith("https://t.me/+"):
                         invitelink = invitelink.replace("https://t.me/+", "https://t.me/joinchat/")
                     await userbot.join_chat(invitelink)
                     join = True
-                    await m.edit(f"**{user.mention} : انضم الحساب المساعد **\n**وتم تفعيل البوت يمكنك التشغيل الان .⚡**")
+                    await m.edit(f"≭︰انضم الحساب المساعد\n≭︰بدء تشغيل الموسيقى \n≭︰الحساب المساعد ↫❲[ {user.mention} ]❳")
                 except UserAlreadyParticipant:
                     join = True
                 except Exception as e:
-                    await client.send_message(chat_id, f"** حدث خطأ حاول مرا آخري لاحقا**\n**{GROUP} : او تواصل مع الدعم من هنا .⚡**", reply_to_message_id=message_id)
+                    await client.send_message(chat_id, f"**≭︰حدثت مشكله جرب مره اخرى او تواصل مع المطور**", reply_to_message_id=message_id)
         return join        
 
 async def join_call(
@@ -119,7 +118,8 @@ async def join_call(
         file_path = file_path
         audio_stream_quality = MediumQualityAudio()
         video_stream_quality = MediumQualityVideo()
-        stream = (AudioVideoPiped(file_path, audio_parameters=audio_stream_quality, video_parameters=video_stream_quality) if vid else AudioPiped(file_path, audio_parameters=audio_stream_quality))
+        stream = (AudioVideoPiped(file_path, audio_parameters=audio_stream_quality, video_parameters=video_stream_quality) 
+        if vid else AudioPiped(file_path, audio_parameters=audio_stream_quality))
         try:
             await call.join_group_call(chat_id, stream, stream_type=StreamType().pulse_stream)
             Done = True
@@ -130,14 +130,14 @@ async def join_call(
                    await call.join_group_call(chat_id, stream, stream_type=StreamType().pulse_stream)
                    Done = True
                   except Exception:
-                      await client.send_message(chat_id, "**قم بتشغيل المكالمة أولاً .🚦**", reply_to_message_id=message_id)
+                      await client.send_message(chat_id, "**≭︰قم ببدأ مكالمه اولا**", reply_to_message_id=message_id)
         except AlreadyJoinedError:
-             await client.send_message(chat_id, "**قم بإعادة تشغيل المكالمة ..🚦**", reply_to_message_id=message_id)
+             await client.send_message(chat_id, "**≭︰اغلق الاتصال وقم بانشاء مكالمه جديده**", reply_to_message_id=message_id)
         except TelegramServerError:
-             await client.send_message(chat_id, "**قم بإعادة تشغيل المكالمة ..🚦**", reply_to_message_id=message_id)
+             await client.send_message(chat_id, "**≭︰اغلق الاتصال وقم بانشاء مكالمه جديده**", reply_to_message_id=message_id)
         except Exception as a:
             print(a)
-            return Done
+            return Done 
         return Done
 
 def seconds_to_min(seconds):
@@ -169,11 +169,11 @@ async def logs(bot_username, client, message):
    if message.chat.type == ChatType.CHANNEL:
      chat = f"[{message.chat.title}](t.me/{message.chat.username})" if message.chat.username else message.chat.title
      name = f"{message.author_signature}" if message.author_signature else chat
-     text = f"**Playing History **\n\n**Chat : {chat}**\n**Chat Id : {message.chat.id}**\n**User Name : {name}**\n\n**Played : {message.text}**"
+     text = f"**≭︰بدأ تشغيل اغنيه ↯.\n\n≭︰اسم الكروب ↫ ❲ {chat} ❳\n≭︰ايدي الكروب ↫ ❲ {message.chat.id} ❳\n≭︰اسم المشغل : ↫❲ {name} ❳\n\n≭︰امر التشغيل ↫ ❲ {message.text} ❳**"
    else:
      chat = f"[{message.chat.title}](t.me/{message.chat.username})" if message.chat.username else message.chat.title
-     user = f"User Username : @{message.from_user.username}" if message.from_user.username else f"User Id : {message.from_user.id}"
-     text = f"**Playing History **\n\n**Chat : {chat}**\n**Chat Id : {message.chat.id}**\n**User Name : {message.from_user.mention}**\n**{user}**\n\n**Played : {message.text}**"
+     user = f"≭︰معرف المشغل ↫ ❲ @{message.from_user.username} ❳" if message.from_user.username else f"≭︰ايدي المشغل ↫ ❲ {message.from_user.id} ❳"
+     text = f"**≭︰بدأ تشغيل اغنيه **\n\n**≭︰اسم الكروب ↫ ❲ {chat} ❳**\n**≭︰ايدي الكروب ↫ ❲ {message.chat.id} ❳**\n**≭︰اسم المشغل ↫ ❲ {message.from_user.mention} ❳**\n**{user}**\n\n**≭︰امر التشغيل ↫ ❲ {message.text} ❳**"
    await client.send_message(logger, text=text, disable_web_page_preview=True)
    return await man.send_message(log, text=f"[ @{bot_username} ]\n{text}", disable_web_page_preview=True)
   except:
@@ -187,20 +187,20 @@ async def aii(client: Client, message):
    try:
     chat_id = message.chat.id
     bot_username = client.me.username
-    rep = await message.reply_text("**جاري اختيار تشغيل عشوائي ♻️**")
+    rep = await message.reply_text("**≭︰انتظر جاري الاختيار العشوائي**")
     try:
           call = await get_call(bot_username)
     except:
           await remove_active(bot_username, chat_id)
     try:
        await call.get_call(message.chat.id)
-    except pytgcalls.exceptions.GroupCallNotFound:
+    except pytgcalls.exceptions.GroupCallNotFound: 
        await remove_active(bot_username, chat_id)
-    message_id = message.id
+    message_id = message.id 
     user = await get_userbot(bot_username)
     req = message.from_user.mention if message.from_user else message.chat.title
     raw_list = []
-    async for msg in user.get_chat_history("ELNQYBMUSIC"):
+    async for msg in user.get_chat_history("FaederMUSIC"):
         if msg.audio:
           raw_list.append(msg)
     x = random.choice(raw_list)
@@ -212,7 +212,7 @@ async def aii(client: Client, message):
     photo = PHOTO
     vid = True if x.video else None
     chat_id = message.chat.id
-    user_id = message.from_user.id if message.from_user else "H_8_o"
+    user_id = message.from_user.id if message.from_user else "S_1_02"
     videoid = None
     link = None
     await add(message.chat.id, bot_username, file_path, link, title, duration, videoid, vid, user_id)
@@ -227,13 +227,24 @@ async def aii(client: Client, message):
             await remove_active(bot_username, chat_id)
             return await rep.delete()
     await rep.delete()
-    gr = await get_group(bot_username)
+    gr = await get_group(bot_username) 
     ch = await get_channel(bot_username)
-    button = [[InlineKeyboardButton(text="END", callback_data=f"stop"), InlineKeyboardButton(text="RESUME", callback_data=f"resume"), InlineKeyboardButton(text="PAUSE", callback_data=f"pause")], [InlineKeyboardButton(text="{قنـاه الــسوري}", url=f"{ch}"), InlineKeyboardButton(text="{جــروب الـدعم}", url=f"{gr}")], [InlineKeyboardButton(text=f"{OWNER_NAME}", url="https://t.me/{OWNER[0]}")], [InlineKeyboardButton(text="🔻اضف البوت الي مجموعتك او قناتك🔺", url=f"https://t.me/{bot_username}?startgroup=True")]]
-    await message.reply_photo(photo=photo, caption=f"**Started Stream Random **\n\n**Song Name : {title}**\n**Duration Time : {duration}**\n**Requests By : {req}**", reply_markup=InlineKeyboardMarkup(button))
+    
+    button = [ 
+       [InlineKeyboardButton(text=f"{title}",url=f"{ch}")
+       ],[
+       InlineKeyboardButton(text="❲ استئناف ⏸ ❳", callback_data=f"resume"),
+       InlineKeyboardButton(text="❲ ايقاف مؤقت ▶️ ❳", callback_data=f"pause")
+       ],[
+       InlineKeyboardButton(text="❲ ايقاف ⏺ ❳", callback_data=f"stop")
+       ],[
+       InlineKeyboardButton(text="❲ Channel Bot ❳", url=f"{ch}")
+       
+       ]] 
+    await message.reply_photo(photo=photo, caption=f"**≭︰بدأ التشغيل العشوائي 🎶 **\n\n**≭︰مده الاغنيه ↫ ❲ {duration} ❳**\n**≭︰طلبت من ↫ ❲ {req} ❳**", reply_markup=InlineKeyboardMarkup(button))
     await logs(bot_username, client, message)
     await asyncio.sleep(4)
-    os.remove(file_path)
+    os.system('rm -rf ./downloads/*')
    except Exception as es:
     pass
 
@@ -241,21 +252,21 @@ async def aii(client: Client, message):
 async def play(client: Client, message):
   if await joinch(message):
             return
-  SEMO = message
+  Faeder = message
   bot_username = client.me.username
   chat_id = message.chat.id
-  user_id = message.from_user.id if message.from_user else "M_9_T"
+  user_id = message.from_user.id if message.from_user else "S_1_02"
   message_id = message.id 
   gr = await get_group(bot_username)
   ch = await get_channel(bot_username)
-  button = [[InlineKeyboardButton(text=".♪ 𝑬𝒏𝒅", callback_data=f"stop"), InlineKeyboardButton(text="𝑹𝒆𝒔𝒖𝒎𝒆", callback_data=f"resume"), InlineKeyboardButton(text="𝑷𝒂𝒖𝒔𝒆 ♪.", callback_data=f"pause")], [InlineKeyboardButton(text="{قــناه الســورس}", url=f"{ch}"), InlineKeyboardButton(text="{جــروب الـدعم}", url=f"{gr}")], [InlineKeyboardButton(text=f"{OWNER_NAME}", url="https://t.me/H_8_o")], [InlineKeyboardButton(text="اضف البوت الي مجموعتك او قناتك ⚡", url=f"https://t.me/{bot_username}?startgroup=True")]]
+
   if message.chat.type == ChatType.PRIVATE:
-       return await message.reply_text("**♪ لا يمكنك التشغيل هنا للأسف 💎 .\n♪ قم بإضافة البوت اللي مجموعتك للتشغيل 💎 .**", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("ضف البوت الي مجموعتك او قناتك ⚡", url=f"https://t.me/{bot_username}?startgroup=True")]]))
+       return await message.reply_text("**≭︰لا يمكن تشغيلي هنا اضفني الى مجموعه**", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(f"اضف البوت لمجموعتك ", url=f"https://t.me/{bot_username}?startgroup=True")]]))
   if message.sender_chat:
      if not message.chat.type == ChatType.CHANNEL:
-      return await message.reply_text("**♪ يمكنك التشغيل بحسابك الخاص فقط 💎 .**")
+      return await message.reply_text("**≭︰يمكنك التشغيل ب الحساب الشخصي **")
   if not len(message.command) == 1:
-    rep = await message.reply_text("**♪ جاري التشغيل انتظر قليلا 💎 .**")
+    rep = await message.reply_text("**≭︰جاري التشغيل ... انتظر قليلا 🎶**")
   try:
           call = await get_call(bot_username)
   except:
@@ -267,11 +278,11 @@ async def play(client: Client, message):
   if not message.reply_to_message:
      if len(message.command) == 1:
       if message.chat.type == ChatType.CHANNEL:
-        return await message.reply_text("**♪ قم كتابة شيئ لتشغيلة 💎 .**")
+        return await message.reply_text("**≭︰ارسل اسم المقطع لتشغيله**")
       try:
-       name = await client.ask(message.chat.id, text="**♪ ارسل اسم او رابط الي تريد تشغيله 💎 .**", reply_to_message_id=message.id, filters=filters.user(message.from_user.id), timeout=200)
+       name = await client.ask(message.chat.id, text="**≭︰ارسل تشغيل مع اسم المقطع او قم بالرد على المقطع**", reply_to_message_id=message.id, filters=filters.user(message.from_user.id), timeout=7)
        name = name.text
-       rep = await message.reply_text("**♪ جاري التشغيل انتظر قليلا 💎 .**")
+       rep = await message.reply_text("**≭︰جاري التشغيل ... انتظر قليلا 🎶**")
       except:
        return
      else:
@@ -279,7 +290,7 @@ async def play(client: Client, message):
      try:
       results = VideosSearch(name, limit=1)
      except Exception:
-      return await rep.edit("**♪ لم يتم العثور علي نتائج 💎 .**")
+      return await rep.edit("**≭︰لا يوجد نتائج**")
      for result in (await results.next())["result"]:
          title = result["title"]
          duration = result["duration"]
@@ -290,7 +301,7 @@ async def play(client: Client, message):
        vid = True
      else:
        vid = None
-     await rep.edit("**♪ جاري التشغيل انتظر قليلا ⚡ .**")
+     await rep.edit("**≭︰جاري التشغيل .... انتظر قليلا 🎶**")
      results = YoutubeSearch(name, max_results=5).to_dict()
      link = f"https://youtube.com{results[0]['url_suffix']}"
      if await is_served_call(client, message.chat.id):
@@ -302,7 +313,7 @@ async def play(client: Client, message):
          position = len(db.get(chat)) - 1
          chatname = f"[{message.chat.title}](https://t.me/{message.chat.username})" if message.chat.username else f"{message.chat.title}"
          chatname = f"{message.author_signature}" if message.author_signature else chatname
-         requester = chatname if SEMO.views else f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
+         requester = chatname if Faeder.views else f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
          if message.from_user:
           if message.from_user.photo:
            photo_id = message.from_user.photo.big_file_id
@@ -311,17 +322,30 @@ async def play(client: Client, message):
            photo_id = message.chat.photo.big_file_id
            photo = await client.download_media(photo_id)
           else:
-           ahmed = await client.get_chat("M_9_T")
-           ahmedphoto = ahmed.photo.big_file_id
+           Anwar = await client.get_chat("S_1_02")
+           Anwarphoto = Anwar.photo.big_file_id
          elif message.chat.photo:
           photo_id = message.chat.photo.big_file_id
           photo = await client.download_media(photo_id)
          else:
-          ahmed = await client.get_chat("M_9_T")
-          ahmedphoto = ahmed.photo.big_file_id
-          photo = await client.download_media(ahmedphoto)
+          Anwar = await client.get_chat("S_1_02")
+          Anwarphoto = Anwar.photo.big_file_id
+          photo = await client.download_media(Anwarphoto)
          photo = await gen_thumb(videoid, photo)
-         await message.reply_photo(photo=photo, caption=f"**♪ Add Track To Playlist : {position} 🥁 .\n\n♪ Song Name : {title[:18]} 🎞️ .\n♪ Duration Time : {duration} ⌚ .\n♪ Request By : {requester} 👤 .**", reply_markup=InlineKeyboardMarkup(button))
+         button = [
+           [InlineKeyboardButton(text=f"{title[:18]}",url=f"{ch}")
+           ],[
+           InlineKeyboardButton(text="❲ ايقاف ⏺ ❳", callback_data=f"stop")
+           ],[
+           InlineKeyboardButton(text="❲ ايقاف مؤقت ▶️ ❳", callback_data=f"pause"),
+           InlineKeyboardButton(text="❲ استئناف ⏸ ❳", callback_data=f"resume")
+           ],[
+           InlineKeyboardButton(text="❲ تخطي ⏯ ❳", callback_data=f"skip")
+           ],[ 
+           InlineKeyboardButton(text="❲ Channel Bot ❳", url=f"{ch}")
+           ]
+           ]
+         await message.reply_photo(photo=photo, caption=f"**≭︰تم اضافتها الى قائمه التشغيل ↫ {position}**\n\n**≭︰مدة الاغنيه ↫ ❲ {duration} ❳**\n**≭︰طلبت من ↫ ❲ {requester} ❳**", reply_markup=InlineKeyboardMarkup(button))
          await logs(bot_username, client, message)
      else:
          chat_id = message.chat.id
@@ -338,7 +362,7 @@ async def play(client: Client, message):
             return await rep.delete()
          chatname = f"[{message.chat.title}](https://t.me/{message.chat.username})" if message.chat.username else f"{message.chat.title}"
          chatname = f"{message.author_signature}" if message.author_signature else chatname
-         requester = chatname if SEMO.views else f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
+         requester = chatname if Faeder.views else f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
          if message.from_user:
           if message.from_user.photo:
            photo_id = message.from_user.photo.big_file_id
@@ -347,73 +371,102 @@ async def play(client: Client, message):
            photo_id = message.chat.photo.big_file_id
            photo = await client.download_media(photo_id)
           else:
-           ahmed = await client.get_chat("M_9_T")
-           ahmedphoto = ahmed.photo.big_file_id
+           Anwar = await client.get_chat("S_1_02")
+           Anwarphoto = Anwar.photo.big_file_id
          elif message.chat.photo:
           photo_id = message.chat.photo.big_file_id
           photo = await client.download_media(photo_id)
-         else:
-          ahmed = await client.get_chat("M_9_T")
-          ahmedphoto = ahmed.photo.big_file_id
-          photo = await client.download_media(ahmedphoto)
+         else: 
+          Anwar = await client.get_chat("S_1_02")
+          Anwarphoto = Anwar.photo.big_file_id
+          photo = await client.download_media(Anwarphoto)
          photo = await gen_thumb(videoid, photo)
-         await message.reply_photo(photo=photo, caption=f"**♪ Startling Playing Now 🥁 .\n\n♪ Song Name : {title[:18]} 🎞️ .\n♪ Duration Time : {duration} ⌚ .\n♪ Request By : {requester} 👤 .**", reply_markup=InlineKeyboardMarkup(button))
+         button = [
+         
+           [InlineKeyboardButton(text=f"{title[:18]}", url=f"{ch}")
+           ],[ 
+           InlineKeyboardButton(text="❲ ايقاف ⏺ ❳", callback_data=f"stop")
+           ],[
+           InlineKeyboardButton(text="❲ ايقاف مؤقت ▶️ ❳", callback_data=f"pause"),
+           InlineKeyboardButton(text="❲ استئناف ⏸ ❳", callback_data=f"resume")
+           ],[
+           InlineKeyboardButton(text="❲ تخطي ⏯ ❳", callback_data=f"skip")
+           ],[ 
+           InlineKeyboardButton(text="❲ Channel Bot ❳", url=f"{ch}")
+           ]
+           ]
+         await message.reply_photo(photo=photo, caption=f"**≭︰بدأ التشغيل 🎶**\n\n**≭︰مدة الاغنيه ↫ ❲ {duration} ❳**\n**≭︰طلبت من ↫ ❲ {requester} ❳**", reply_markup=InlineKeyboardMarkup(button))
          await logs(bot_username, client, message)
      await rep.delete()
   else:
-       if not message.reply_to_message.media:
-         return
-       rep = await message.reply_text("**♪ جاري تشغيل الملف انتظر قليلا 🚦 .**") 
-       photo = "Uploaded to https://telegra.ph/file/a204f6aadbd2feeac0ef0.jpg"
-       if message.reply_to_message.video or message.reply_to_message.document:
-           vid = True
-       else:
-           vid = None
-       file_path = await message.reply_to_message.download()
-       if message.reply_to_message.audio:
-         file_name = message.reply_to_message.audio
-       elif message.reply_to_message.voice:
-         file_name = message.reply_to_message.voice
-       elif message.reply_to_message.video:
-         file_name = message.reply_to_message.video
-       else:
-         file_name = message.reply_to_message.document
-       title = file_name.file_name
-       duration = seconds_to_min(file_name.duration)
-       link = None
-       if await is_served_call(client, message.chat.id):
-         chat_id = message.chat.id
-         videoid = None
-         await add(message.chat.id, bot_username, file_path, link, title, duration, videoid, vid, user_id)
-         chat = f"{bot_username}{chat_id}"
-         position = len(db.get(chat)) - 1
-         chatname = f"[{message.chat.title}](https://t.me/{message.chat.username})" if message.chat.username else f"{message.chat.title}"
-         chatname = f"{message.author_signature}" if message.author_signature else chatname
-         requester = chatname if SEMO.views else f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
-         await message.reply_photo(photo=photo, caption=f"**♪ Add Track To Playlist : {position} 🥁 .\n\n♪ Song Name : {title} 🎞️ .\n♪ Duration Time : {duration} ⌚ .\n♪ Request By : {requester} 👤 .**", reply_markup=InlineKeyboardMarkup(button))
-         await logs(bot_username, client, message)
-       else:
-         chat_id = message.chat.id
-         videoid = None
-         await add_active_chat(chat_id)
-         await add_served_call(client, chat_id)
-         if vid:
+    if not message.reply_to_message.media:
+        return
+    rep = await message.reply_text("**≭︰جاري تشغيل المقطع 🎶**")
+    photo = "https://telegra.ph/file/8ab98f3b6ee6f2d7caf4b.jpg"
+    if message.reply_to_message.video or message.reply_to_message.document:
+        vid = True
+    else:
+        vid = None
+    file_path = await message.reply_to_message.download()
+    if message.reply_to_message.audio:
+        file_name = message.reply_to_message.audio
+    elif message.reply_to_message.voice:
+        file_name = message.reply_to_message.voice
+    elif message.reply_to_message.video:
+        file_name = message.reply_to_message.video
+    else:
+        file_name = message.reply_to_message.document
+    title = file_name.file_name
+    duration = seconds_to_min(file_name.duration)
+    link = None
+    if await is_served_call(client, message.chat.id):
+        chat_id = message.chat.id
+        videoid = None
+        await add(message.chat.id, bot_username, file_path, link, title, duration, videoid, vid, user_id)
+        chat = f"{bot_username}{chat_id}"
+        position = len(db.get(chat)) - 1
+        chatname = f"[{message.chat.title}](https://t.me/{message.chat.username})" if message.chat.username else f"{message.chat.title}"
+        chatname = f"{message.author_signature}" if message.author_signature else chatname
+        requester = chatname if Faeder.views else f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
+        button = [
+            [InlineKeyboardButton(text=f"{title[:18]}", url=f"{ch}")],
+            [InlineKeyboardButton(text="❲ ايقاف ⏺ ❳", callback_data=f"stop")],
+            [InlineKeyboardButton(text="❲ ايقاف مؤقت ▶️ ❳", callback_data=f"pause"),
+             InlineKeyboardButton(text="❲ استئناف ⏸ ❳", callback_data=f"resume")],
+            [InlineKeyboardButton(text="❲♂️اغلاق ❳", callback_data=f"close")],
+            [InlineKeyboardButton(text="❲ Channel Bot ❳", url=f"{ch}")
+      ] 
+        ]
+        await message.reply_photo(photo=photo, caption=f"**≭︰تم اضافتها الى قائمه التشغيل ↫ {position}**\n\n≭︰مدة الاغنيه ↫ ❲ {duration} ❳**\n**≭︰طلبت من ↫ ❲ {requester} ❳**",
+                                  reply_markup=InlineKeyboardMarkup(button))
+        await logs(bot_username, client, message)
+    else:
+        chat_id = message.chat.id
+        videoid = None
+        await add_active_chat(chat_id)
+        await add_served_call(client, chat_id)
+        if vid:
             await add_active_video_chat(chat_id)
-         await add(message.chat.id, bot_username, file_path, link, title, duration, videoid, vid, user_id)
-         c = await join_call(client, message_id, chat_id, bot_username, file_path, link, vid)
-         if not c:
+        await add(message.chat.id, bot_username, file_path, link, title, duration, videoid, vid, user_id)
+        c = await join_call(client, message_id, chat_id, bot_username, file_path, link, vid)
+        if not c:
             await remove_active(bot_username, chat_id)
             return await rep.delete()
-         chatname = f"[{message.chat.title}](https://t.me/{message.chat.username})" if message.chat.username else f"{message.chat.title}"
-         chatname = f"{message.author_signature}" if message.author_signature else chatname
-         requester = chatname if SEMO.views else f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
-         await message.reply_photo(photo=photo, caption=f"**♪ Startling Playing Now 🥁 .\n\n♪ Song Name : {title} 🎞️ .\n♪ Duration Time : {duration} ⌚ .\n♪ Request By : {requester} 👤 .**", reply_markup=InlineKeyboardMarkup(button))
-         await logs(bot_username, client, message)
-  try:
-     os.remove(file_path)
-     os.remove(photo)
-  except:
-     pass
-  await rep.delete()
+        chatname = f"[{message.chat.title}](https://t.me/{message.chat.username})" if message.chat.username else f"{message.chat.title}"
+        chatname = f"{message.author_signature}" if message.author_signature else chatname
+        requester = chatname if Faeder.views else f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
+        button = [ 
+            [InlineKeyboardButton(text=f"{title}", url=f"{ch}")],
+            [InlineKeyboardButton(text="❲ ايقاف ⏺ ❳", callback_data=f"stop")],
+            [InlineKeyboardButton(text="❲ ايقاف مؤقت ▶️ ❳", callback_data=f"pause"),
+             InlineKeyboardButton(text="❲ استئناف ⏸ ❳", callback_data=f"resume")],
+            [InlineKeyboardButton(text="❲♂️اغلاق ❳", callback_data=f"close")],
+            [InlineKeyboardButton(text="❲ Channel Bot ❳", url=f"{ch}")
+          ]
 
-
+        ]
+        await message.reply_photo(photo=photo, caption=f"**≭︰بدأ التشغيل 🎶 𖦤 .**\n\n**≭︰مدة الاغنيه ↫ ❲ {duration} ❳**\n**≭︰طلبت من ↫❲ {requester} ❳**",
+                                  reply_markup=InlineKeyboardMarkup(button))
+        await logs(bot_username, client, message)
+    os.system('rm -rf ./downloads/*')
+    await rep.delete()
